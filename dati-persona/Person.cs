@@ -145,9 +145,9 @@ namespace dati_persona
 
         #region "Fiscal Code"
         // -------------------- Metodo che Restituisce il Codice Fiscale --------------------
-        public void setFiscalCode() {
+        /*public void setFiscalCode() {
             CodiceFiscaleUtility.CodiceFiscale cf = new CodiceFiscaleUtility.CodiceFiscale();
-        }
+        }*/
         #endregion
     }
 }
