@@ -77,12 +77,74 @@ namespace TestPerson
             else {
                 throw new Exception("");
             }
-
-
-
         }
         #endregion
 
         // --------------------------------------------------------------------------------------------------------
+
+        #region "Test First Name"
+        [TestMethod]
+        public void testFirstName()
+        {
+            dati_persona.Person person;
+
+            person = new dati_persona.Person("Gabriele", "Benassi", "M", "Modena", "MO", "25-09-2002");
+
+            if (person.firstName != "Gabriele") {
+                throw new Exception("");
+            }           
+        }
+        #endregion
+
+        // --------------------------------------------------------------------------------------------------------
+
+        #region "Test Second Name"
+        [TestMethod]
+        public void testSecondName()
+        {
+            dati_persona.Person person;
+
+            person = new dati_persona.Person("Gabriele", "Benassi", "M", "Modena", "MO", "25-09-2002");
+
+            if (person.secondName != "Benassi")
+            {
+                throw new Exception("");
+            }
+        }
+        #endregion
+
+        // --------------------------------------------------------------------------------------------------------
+
+        #region "Test Birth City"
+        [TestMethod]
+        public void testBirthCity()
+        {
+            dati_persona.Person person;
+
+            person = new dati_persona.Person("Gabriele", "Benassi", "M", "Modena", "MO", "25-09-2002");
+
+            if (person.birthCity != "Modena")
+            {
+                throw new Exception("");
+            }
+        }
+        #endregion
+
+        // --------------------------------------------------------------------------------------------------------
+
+        #region "Test Birth City Code"
+        [TestMethod]
+        public void testBirthCityCode()
+        {
+            dati_persona.Person person;
+
+            person = new dati_persona.Person("Gabriele", "Benassi", "M", "Modena", "MO", "25-09-2002");
+
+            if (person.birthCityCode != "MO")
+            {
+                throw new Exception("");
+            }
+        }
+        #endregion
     }
 }
