@@ -22,17 +22,35 @@ namespace TestPerson
 
         // --------------------------------------------------------------------------------------------------------
 
-        #region "Test Codice Fiscale"
-        /*[TestMethod]
-        public void testCF()
+        #region "Test Costruttore"
+        [TestMethod]
+        public void testConstructors()
         {
-            dati_persona.Person person = new dati_persona.Person("", "", "", "", "", "01-01-2000");
+            dati_persona.Person person;
 
-            if (person.getFiscalCode("", "", "", "", "", "01-01-2000").Length == 16)
-            {
+            person = new dati_persona.Person();
+            person = new dati_persona.Person("Mario", "Rossi");
+            person = new dati_persona.Person("Mario", "Rossi", "M");
+            person = new dati_persona.Person("Mario", "Rossi", "M", "Roma", "RM", "01-01-2000");
+
+        }
+        #endregion
+
+        // --------------------------------------------------------------------------------------------------------
+
+        #region "Test Codice Fiscale"
+        [TestMethod]
+        public void testFiscalCode()
+        {
+            dati_persona.Person person;
+        
+            person = new dati_persona.Person("Gabriele", "Benassi", "M", "Modena", "MO", "25-09-2002");
+
+            if(person.getFiscalCode("Gabriele", "Benassi", "M", "Modena", "MO", "25-09-2002") != "BNSGRL02P25F257Z") {
                 throw new Exception("");
             }
-        }*/
+
+        }
         #endregion
     }
 }

@@ -19,7 +19,13 @@ namespace dati_persona
 
         #region "Costruttore"
         // -------------------- Costruttore Vuoto --------------------
-        public Person() { }
+        public Person() : this("", "", "", "", "", "") { }
+
+        // -------------------- Costruttore con Parametri --------------------
+        public Person(string firstName, string secondName) : this(firstName, secondName, "", "", "", "") { }
+
+        // -------------------- Costruttore con Parametri --------------------
+        public Person(string firstName, string secondName, string gender) : this(firstName, secondName, gender, "", "", "") { }
 
         // -------------------- Costruttore con Parametri --------------------
         /// <summary>
@@ -41,7 +47,7 @@ namespace dati_persona
         }
         #endregion
 
-        #region "First Name"
+        #region "First Name - Second Name"
         // -------------------- Metodo che Setta il Nome --------------------
         public string setFirstName()
         {
@@ -52,9 +58,7 @@ namespace dati_persona
 
             return firstName;
         }
-        #endregion
 
-        #region "Second Name"
         // -------------------- Metodo che Setta il Cognome --------------------
         public string setSecondName() {
             string secondName;
@@ -82,7 +86,7 @@ namespace dati_persona
         }
         #endregion
 
-        #region "Birth City"
+        #region "Birth City - Birth City Code - Birth Date"
         // -------------------- Metodo che Setta il Birth City --------------------
         public string setBirthCity() {
             string birthCity;
@@ -92,9 +96,7 @@ namespace dati_persona
 
             return birthCity;
         }
-        #endregion
 
-        #region "Birth City Code"
         // -------------------- Metodo che Setta il Birth City Code --------------------
         public string setBirthCityCode()
         {
@@ -105,9 +107,7 @@ namespace dati_persona
 
             return birthCityCode;
         }
-        #endregion
-
-        #region "Birth Date"
+        
         // -------------------- Metodo che Setta il Birth Date --------------------
         public string setBirthDate()
         {
@@ -131,11 +131,11 @@ namespace dati_persona
             string birthDate = this.setBirthDate();
             
             Console.Write("\n" + firstName + " Age: " + this.getAge(birthDate));
-            this.getFiscalCode(firstName, secondName, gender, birthCity, birthCityCode, birthDate);
+            Console.WriteLine("\nCF: " + this.getFiscalCode(firstName, secondName, gender, birthCity, birthCityCode, birthDate));
         }
         #endregion
 
-        #region "Age"
+        #region "Get Age"
         // -------------------- Metodo che Restituisce l'Età --------------------
         public string getAge(string birthDate) {
             string age;
@@ -153,13 +153,14 @@ namespace dati_persona
         }
         #endregion
 
-        #region "Fiscal Code"
+        #region "Get Fiscal Code"
         // -------------------- Metodo che Restituisce il Codice Fiscale --------------------
-        public void getFiscalCode(string firstName, string secondName, string gender, string birthCity, string birthCityCode, string birthDate) {
+        public string getFiscalCode(string firstName, string secondName, string gender, string birthCity, string birthCityCode, string birthDate) {
             var parsedDate = DateTime.Parse(birthDate); 
 
-            CodiceFiscaleUtility.CodiceFiscale CF = new CodiceFiscaleUtility.CodiceFiscale(firstName, secondName, gender, parsedDate, birthCity, birthCityCode);
-            Console.WriteLine("\nCF: " + CF.CodiceNormalizzato);            
+            CodiceFiscaleUtility.CodiceFiscale CF = new CodiceFiscaleUtility.CodiceFiscale(secondName, firstName, gender, parsedDate, birthCity, birthCityCode);
+            
+            return CF.Codice;
         }
         #endregion
     }
