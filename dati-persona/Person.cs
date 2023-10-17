@@ -134,11 +134,13 @@ namespace dati_persona
         {
             string birthCityCode;
 
-            // Prompt the user to enter their birth city code
-            Console.Write("Birth City Code (XX): ");
+            do { 
+                // Prompt the user to enter their birth city code
+                Console.Write("Birth City Code (XX): ");
 
-            // Read the input from the console and store it in the birthCityCode variable
-            birthCityCode = Console.ReadLine();
+                // Read the input from the console and store it in the birthCityCode variable
+                birthCityCode = Console.ReadLine();
+            } while (birthCityCode.Length != 2);
 
             return birthCityCode;
         }
@@ -152,11 +154,13 @@ namespace dati_persona
         {
             string birthDate;
 
-            // Prompt the user to enter their birth date
-            Console.Write("Birth Date (XX-XX-XXXX): ");
+            do {
+                // Prompt the user to enter their birth date
+                Console.Write("Birth Date (XX-XX-XXXX): ");
 
-            // Read the input from the console and store it in the birthDate variable
-            birthDate = Console.ReadLine();
+                // Read the input from the console and store it in the birthDate variable
+                birthDate = Console.ReadLine();
+            } while (birthDate.Length != 10);
 
             return birthDate;
         }
