@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CodiceFiscale\CodiceFiscale\CodiceFiscale.csproj" />
+    <ProjectReference Include="..\CodiceFiscale\CodiceFiscale\CodiceFiscale.csproj" />
   </ItemGroup>
+
+
 
 </Project>

@@ -22,6 +22,15 @@ namespace dati_persona
         public Person() { }
 
         // -------------------- Costruttore con Parametri --------------------
+        /// <summary>
+        /// Costruttore della Classe Person
+        /// </summary>
+        /// <param name="firstName">First Name of the Person</param>
+        /// <param name="secondName">Second Name of the Personparam>
+        /// <param name="gender">Gender of the Person</param>
+        /// <param name="birthCity">Birth City of the Person</param>
+        /// <param name="birthCityCode">Birth City Code of the Person</param>
+        /// <param name="birthDate">Birth Date of the Person</param>
         public Person(string firstName, string secondName, string gender, string birthCity, string birthCityCode, string birthDate) { 
             this.firstName = firstName;
             this.secondName = secondName;
