@@ -53,7 +53,7 @@ namespace dati_persona
         {
             string firstName;
 
-            Console.Write("First Name: ");
+            Console.Write("\nFirst Name: ");
             firstName = Console.ReadLine();
 
             return firstName;
@@ -120,18 +120,74 @@ namespace dati_persona
         }
         #endregion
 
+        #region "Menu"
+        // -------------------- Motodo Menu --------------------
+        public int stampaMenu() {
+            int answer;
+
+            Console.WriteLine("\n---------------------------------");
+
+            Console.WriteLine("\n1) INSERIRE una PERSONA");
+            Console.WriteLine("2) CODICE FISCALE della PERSONA");
+            Console.WriteLine("3) ETÁ della PERSONA");
+            Console.WriteLine("0) USCIRE");
+
+            do
+            {
+                Console.Write("\nSelezionare l'Azione da Eseguire (0-3): ");
+                answer = Int32.Parse(Console.ReadLine());
+            } while (answer < 0 || answer > 3);
+
+            return answer;
+        }
+
+        // -------------------- Motodo che Setta il Menu --------------------
+        public void setScelta() {
+            int menu;
+
+            do {
+                menu = stampaMenu();
+
+                switch (menu) {
+                    case 1:
+                        this.setNewPerson();
+                        break;
+                    case 2:
+                        try {
+                            Console.WriteLine("\n" + this.firstName + " Age: " + this.getAge(this.birthDate));
+                        } catch (Exception e) {
+                            Console.WriteLine("\nDati Inseriti in Modo Errato o Inesistenti");
+                            this.setNewPerson();
+                        }
+                        break;
+                    case 3:
+                        try {
+                            Console.WriteLine("\nCF: " + this.getFiscalCode(this.firstName, this.secondName, this.gender, this.birthCity, this.birthCityCode, this.birthDate));
+                        } catch (Exception e) {
+                            Console.WriteLine("\nDati Inseriti in Modo Errato o Inesistenti");
+                            this.setNewPerson();
+                        }
+                        break;
+                    case 0:
+                        //Environment.Exit(0);              // CHIUDE IL PROGRAMMA
+                        break;
+                    default:
+                        Console.WriteLine("ERROR");
+                        break;
+                }
+            } while (menu != 0);
+        }
+        #endregion
+
         #region "Start"
         // -------------------- Metodo che Lancia il Programma --------------------
-        public void start() { 
-            string firstName = this.setFirstName();
-            string secondName = this.setSecondName();
-            string gender = this.setGender();
-            string birthCity = this.setBirthCity();
-            string birthCityCode = this.setBirthCityCode();
-            string birthDate = this.setBirthDate();
-            
-            Console.Write("\n" + firstName + " Age: " + this.getAge(birthDate));
-            Console.WriteLine("\nCF: " + this.getFiscalCode(firstName, secondName, gender, birthCity, birthCityCode, birthDate));
+        public void setNewPerson() { 
+            this.firstName = this.setFirstName();
+            this.secondName = this.setSecondName();
+            this.gender = this.setGender();
+            this.birthCity = this.setBirthCity();
+            this.birthCityCode = this.setBirthCityCode();
+            this.birthDate = this.setBirthDate();
         }
         #endregion
 
@@ -143,12 +199,14 @@ namespace dati_persona
             DateTime data_nascita = Convert.ToDateTime(birthDate);
 
             int differenza_eta = data_odierna.Year - data_nascita.Year;
+
             if (data_nascita.Month > data_odierna.Month) {
                 differenza_eta = differenza_eta - 1;
             } else if (data_nascita.Month == data_odierna.Month && data_nascita.Day > data_odierna.Day) {
                 differenza_eta = differenza_eta - 1;
-            } age = differenza_eta.ToString();
-
+            } 
+            
+            age = differenza_eta.ToString();
             return age;
         }
         #endregion
@@ -156,11 +214,18 @@ namespace dati_persona
         #region "Get Fiscal Code"
         // -------------------- Metodo che Restituisce il Codice Fiscale --------------------
         public string getFiscalCode(string firstName, string secondName, string gender, string birthCity, string birthCityCode, string birthDate) {
-            var parsedDate = DateTime.Parse(birthDate); 
+            var parsedDate = DateTime.Parse(birthDate);
+            string fiscalCode;
 
-            CodiceFiscaleUtility.CodiceFiscale CF = new CodiceFiscaleUtility.CodiceFiscale(secondName, firstName, gender, parsedDate, birthCity, birthCityCode);
-            
-            return CF.Codice;
+            try {  
+                CodiceFiscaleUtility.CodiceFiscale CF;
+                CF = new CodiceFiscaleUtility.CodiceFiscale(secondName, firstName, gender, parsedDate, birthCity, birthCityCode);
+                fiscalCode = CF.Codice;
+            } catch (Exception e) {                
+                fiscalCode = $"Exception: {e.Message}";
+            }
+
+            return fiscalCode;
         }
         #endregion
     }

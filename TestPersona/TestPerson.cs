@@ -9,20 +9,19 @@ namespace TestPerson
             dati_persona.Person person = new dati_persona.Person("", "", "", "", "", "01-01-2000");
 
             if(person.getAge("01-01-2000") != "23") {
-                throw new Exception("");
+                throw new Exception("Wrong Age");
             }
 
             person = new dati_persona.Person("", "", "", "", "", "01-12-2000");
 
             if (person.getAge("01-12-2000") != "22") {
-                throw new Exception("");
+                throw new Exception("Wrong Age");
             }
         }
         #endregion
 
-        // --------------------------------------------------------------------------------------------------------
-
         #region "Test Costruttore"
+        // --------------------------------------------------------------------------------------------------------
         [TestMethod]
         public void testConstructors()
         {
@@ -34,11 +33,10 @@ namespace TestPerson
             person = new dati_persona.Person("Mario", "Rossi", "M", "Roma", "RM", "01-01-2000");
 
         }
-        #endregion
-
-        // --------------------------------------------------------------------------------------------------------
+        #endregion        
 
         #region "Test Codice Fiscale"
+        // --------------------------------------------------------------------------------------------------------
         [TestMethod]
         public void testFiscalCode()
         {
@@ -47,15 +45,14 @@ namespace TestPerson
             person = new dati_persona.Person("Gabriele", "Benassi", "M", "Modena", "MO", "25-09-2002");
 
             if(person.getFiscalCode("Gabriele", "Benassi", "M", "Modena", "MO", "25-09-2002") != "BNSGRL02P25F257Z") {
-                throw new Exception("");
+                throw new Exception("Wrong Fiscal Code");
             }
 
         }
         #endregion
 
-        // --------------------------------------------------------------------------------------------------------
-
         #region "Test Gender"
+        // --------------------------------------------------------------------------------------------------------
         [TestMethod]
         public void testGender()
         {
@@ -66,7 +63,7 @@ namespace TestPerson
             if (person.gender == "M") {
                 // OK
             } else {
-                throw new Exception("");
+                throw new Exception("Wrong Gender");
             }
 
             person = new dati_persona.Person("Gabriele", "Benassi", "F", "Modena", "MO", "25-09-2002");
@@ -75,14 +72,13 @@ namespace TestPerson
                 // OK
             }
             else {
-                throw new Exception("");
+                throw new Exception("Wrong Gender");
             }
         }
         #endregion
 
-        // --------------------------------------------------------------------------------------------------------
-
         #region "Test First Name"
+        // --------------------------------------------------------------------------------------------------------
         [TestMethod]
         public void testFirstName()
         {
@@ -91,14 +87,13 @@ namespace TestPerson
             person = new dati_persona.Person("Gabriele", "Benassi", "M", "Modena", "MO", "25-09-2002");
 
             if (person.firstName != "Gabriele") {
-                throw new Exception("");
+                throw new Exception("Wrong First Name");
             }           
         }
         #endregion
 
-        // --------------------------------------------------------------------------------------------------------
-
         #region "Test Second Name"
+        // --------------------------------------------------------------------------------------------------------
         [TestMethod]
         public void testSecondName()
         {
@@ -108,14 +103,13 @@ namespace TestPerson
 
             if (person.secondName != "Benassi")
             {
-                throw new Exception("");
+                throw new Exception("Wrong Second Name");
             }
         }
         #endregion
 
-        // --------------------------------------------------------------------------------------------------------
-
         #region "Test Birth City"
+        // --------------------------------------------------------------------------------------------------------
         [TestMethod]
         public void testBirthCity()
         {
@@ -125,14 +119,13 @@ namespace TestPerson
 
             if (person.birthCity != "Modena")
             {
-                throw new Exception("");
+                throw new Exception("Wrong Birth City");
             }
         }
         #endregion
 
-        // --------------------------------------------------------------------------------------------------------
-
         #region "Test Birth City Code"
+        // --------------------------------------------------------------------------------------------------------
         [TestMethod]
         public void testBirthCityCode()
         {
@@ -142,7 +135,7 @@ namespace TestPerson
 
             if (person.birthCityCode != "MO")
             {
-                throw new Exception("");
+                throw new Exception("Wrong Birth City Code");
             }
         }
         #endregion
