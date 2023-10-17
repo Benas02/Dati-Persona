@@ -9,12 +9,12 @@ namespace dati_persona
     public class Person {
         #region "Proprietà"
         // -------------------- Proprietà --------------------
-        public string? firstName;
-        public string? secondName;
-        public string? gender;
-        public string? birthCity;
-        public string? birthCityCode;
-        public string? birthDate;
+        public string firstName;
+        public string secondName;
+        public string gender;
+        public string birthCity;
+        public string birthCityCode;
+        public string birthDate;
         #endregion
 
         #region "Costruttore"
@@ -22,7 +22,7 @@ namespace dati_persona
         public Person() { }
 
         // -------------------- Costruttore con Parametri --------------------
-        public Person(string? firstName, string? secondName, string? gender, string? birthCity, string? birthCityCode, string? birthDate) { 
+        public Person(string firstName, string secondName, string gender, string birthCity, string birthCityCode, string birthDate) { 
             this.firstName = firstName;
             this.secondName = secondName;
             this.gender = gender;
@@ -104,7 +104,7 @@ namespace dati_persona
         {
             string birthDate;
 
-            Console.Write("Birth Date: ");
+            Console.Write("Birth Date (XX-XX-XXXX): ");
             birthDate = Console.ReadLine();
 
             return birthDate;
@@ -115,22 +115,23 @@ namespace dati_persona
         // -------------------- Metodo che Lancia il Programma --------------------
         public void start() { 
             string firstName = this.setFirstName();
-            string secondName= this.setSecondName();
+            string secondName = this.setSecondName();
             string gender = this.setGender();
             string birthCity = this.setBirthCity();
             string birthCityCode = this.setBirthCityCode();
             string birthDate = this.setBirthDate();
             
-            Console.Write("\n" + this.firstName + " Age: " + this.getAge());
+            Console.Write("\n" + firstName + " Age: " + this.getAge(birthDate));
+            this.getFiscalCode(firstName, secondName, gender, birthCity, birthCityCode, birthDate);
         }
         #endregion
 
         #region "Age"
         // -------------------- Metodo che Restituisce l'Età --------------------
-        public string getAge() {
+        public string getAge(string birthDate) {
             string age;
             DateTime data_odierna = DateTime.Today;
-            DateTime data_nascita = Convert.ToDateTime(this.birthDate);
+            DateTime data_nascita = Convert.ToDateTime(birthDate);
 
             int differenza_eta = data_odierna.Year - data_nascita.Year;
             if (data_nascita.Month > data_odierna.Month) {
@@ -145,9 +146,12 @@ namespace dati_persona
 
         #region "Fiscal Code"
         // -------------------- Metodo che Restituisce il Codice Fiscale --------------------
-        /*public void setFiscalCode() {
-            CodiceFiscaleUtility.CodiceFiscale cf = new CodiceFiscaleUtility.CodiceFiscale();
-        }*/
+        public void getFiscalCode(string firstName, string secondName, string gender, string birthCity, string birthCityCode, string birthDate) {
+            var parsedDate = DateTime.Parse(birthDate); 
+
+            CodiceFiscaleUtility.CodiceFiscale CF = new CodiceFiscaleUtility.CodiceFiscale(firstName, secondName, gender, parsedDate, birthCity, birthCityCode);
+            Console.WriteLine("\nCF: " + CF.CodiceNormalizzato);            
+        }
         #endregion
     }
 }
