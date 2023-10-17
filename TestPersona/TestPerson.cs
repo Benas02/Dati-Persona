@@ -52,5 +52,37 @@ namespace TestPerson
 
         }
         #endregion
+
+        // --------------------------------------------------------------------------------------------------------
+
+        #region "Test Gender"
+        [TestMethod]
+        public void testGender()
+        {
+            dati_persona.Person person;
+
+            person = new dati_persona.Person("Gabriele", "Benassi", "M", "Modena", "MO", "25-09-2002");
+
+            if (person.gender == "M") {
+                // OK
+            } else {
+                throw new Exception("");
+            }
+
+            person = new dati_persona.Person("Gabriele", "Benassi", "F", "Modena", "MO", "25-09-2002");
+
+            if (person.gender == "F") {
+                // OK
+            }
+            else {
+                throw new Exception("");
+            }
+
+
+
+        }
+        #endregion
+
+        // --------------------------------------------------------------------------------------------------------
     }
 }
